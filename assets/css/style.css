@@ -1,0 +1,76 @@
+body {
+    background-image: none;
+    background-size: none;
+    background-repeat: none;
+    background-color: #d9c5b2;
+    font-family: sans-serif;
+    color: #14110f;
+}
+
+div {
+    background-color: #d9c5b2;
+    color: #34312d;
+    width: 30%;
+    padding: none;
+    padding-left: 10px;
+    margin-top: 20px;
+
+}
+
+button {
+    background-color: #34312d;
+    border: none;
+    color: #f3f3f4;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 4px 2px;
+    cursor: auto;
+  
+}
+
+table {
+    font-family: sans-serif;
+    border-collapse: collapse;
+    width: 30%;
+  }  
+
+th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #34312d;
+    color: #f3f3f4;
+}
+
+td, th {
+    border: 1px solid #7e7f83;
+    padding: 8px;
+}
+  
+tr:nth-child(odd){background-color: #f3f3f4;}
+
+tr:hover {background-color: #7e7f83; border-color: #f3f3f4;
+}
+
+  
+
+#standardDIV {
+    padding: none;
+    padding-left: none;
+    text-align: left;
+    background-color: #d9c5b2;
+    color: #34312d;
+    margin-top: 20px;
+}
+
+#metricDIV {
+    padding: none;
+    padding-left: none;
+    text-align: left;
+    background-color: #d9c5b2;
+    color: #34312d;
+    margin-top: 20px;
+}

@@ -1,0 +1,283 @@
+/* Colors from darkest to lightest */
+:root {
+--std-dark: #1b1725;
+--std-dark-mid: #582334;
+--std-mid: #19647e;
+--std-light-mid: #9cafb7;
+--std-light: #d0ccd0;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* border: white solid 1px; */
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--std-dark);
+    font-family: sans-serif;
+    color: var(--std-light);
+    margin: auto;
+}
+
+/* Main header elements including nav */
+
+header {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--std-light-mid);
+    color: var(--std-light);
+    padding: 0;
+    margin-left: 0;
+}
+
+nav {
+    display: flex;
+    justify-content: flex-end;
+    background-color: var(--std-mid);
+    color: var(--std-dark-mid);
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+header h1{
+    margin: 0;
+    padding-top: 10px;
+    padding-left: 30px;
+    padding-bottom: 10px;
+    color: var(--std-dark-mid)
+}
+
+nav ul {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    overflow: hidden;
+    margin: 0;
+}
+
+nav ul li {
+
+    background-color: var(--std-mid);
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+nav li a {
+    color: var(--std-light);
+    text-align: center;
+    padding: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-decoration: none;
+}
+
+nav li:hover {
+    color: var(--std-mid);
+    background-color: var(--std-light);
+}
+
+nav li:hover a {
+    color: var(--std-mid);
+}
+
+/* Semantic body styling */
+
+footer {
+    background-color: var(--std-light-mid);
+    color: var(--std-light);
+    padding: 20px 0px 2px 40px;
+    margin-left: 0px;
+    position: absolute;
+    width: 80%;
+    left: 0px;
+    bottom: 0px;
+    border: white solid 1px;
+}
+
+section {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+/*    border: white solid 1px;*/
+}
+
+main {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    /*border: white solid 1px;*/
+}
+
+div {
+    background-color: var(--std-light-mid);
+    color: var(--std-dark-mid);
+    padding: 40px;
+    padding-left: 10px;
+}
+
+form {
+    /*background-color: var(--std-light-mid);*/
+    margin-top: 5px;
+    color: var(--std-dark-mid);
+    padding: 0;
+    width: 300px;
+}
+
+iframe {
+    display: flex;
+    width: 100%;
+    height: 80vh;
+    border: 0;
+}
+#forms {
+    flex-direction: column;
+    justify-content: start;
+    margin-top: 5px;
+    width: 30%;
+}
+
+#output {
+    align-items: center;
+    padding-left: 40px;
+}
+
+#tableContainer {
+    width: 60%;
+    margin-top: 5px;
+}
+
+#cutList {
+    width: 100%;
+    margin-top: 0;
+}
+
+#hiddenObjects {
+    display: none;
+}
+
+
+/* Form style elements */
+
+button {
+    background-color: var(--std-dark-mid);
+    border: none;
+    color: var(--std-light);
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 2px;
+    cursor: auto;
+  
+}
+
+select {
+    background-color: var(--std-light);
+    color: var(--std-dark-mid)
+}
+
+input {
+    background-color: var(--std-light);
+    border-color: var(--std-dark-mid);
+    color: var(--std-dark-mid)
+}
+
+/* Standard table styling */ 
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+  }  
+
+th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: var(--std-dark-mid);
+    color: var(--std-light);
+}
+
+#deleteRow {
+    margin: auto;
+    padding: 4px;
+    display: block;
+}
+
+td, th {
+    border: 1px solid var(--std-dark);
+    padding: 8px;
+}
+  
+tr:nth-child(odd){background-color: var(--std-light); color: var(--std-dark)}
+tr:nth-child(even){background-color: var(--std-light-mid); color: var(--std-dark)}
+
+tr:hover {
+    background-color: var(--std-mid);
+    border-color: var(--std-light);
+    color: var(--std-light);
+}
+
+  
+
+#standardDIV {
+    padding: none;
+    padding-left: none;
+    text-align: left;
+    background-color: var(--std-light-mid);
+    color: var(--std-dark-mid);
+    margin-top: 20px;
+}
+
+#metricDIV {
+    padding: none;
+    padding-left: none;
+    text-align: left;
+    background-color: var(--std-light-mid);
+    color: var(--std-dark-mid);
+    margin-top: 20px;
+}
+/* The code below is for adjusting to smaller displays */
+@media screen and (max-width: 800px) {
+    main {
+        flex-direction: column;
+    }
+    form {
+        width: 100%;
+        margin-top: 10px;
+        padding: 10px;
+    }
+    #tableContainer {
+        width: 100%;
+        margin-top: 10px;
+    }
+    nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    nav ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+    nav li {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        width: 100%;
+        /* border: solid white 1px; */
+    }
+    div {
+        padding: 10px;
+    }
+
+}

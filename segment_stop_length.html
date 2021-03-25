@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Segment Stop Length Calculator</title>
+  <link href="./assets/css/style4.css" rel="stylesheet" />
+  <script src="./assets/scripts/script.js"></script>
+    
+</head>
+<body onload="hideFields()">
+  <main>
+    <form>
+      <div>        
+        <label>Unit of Measure:</label>
+        <select id="mySelect" onchange="selectMeasure()">
+          <option value="1">Standard
+          <option value="2">Metric
+        </select><br><br>
+        <label>Segments: </label><input type="number" id="segments"/>
+      </div>
+      <div id="standardDIV">
+        <p>Diameter (inches):
+            <select id="inchesDia" value="12">
+            <option value=1>1</option>
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=4>4</option>
+            <option value=5>5</option>
+            <option value=6>6</option>
+            <option value=7>7</option>
+            <option value=8>8</option>
+            <option value=9>9</option>
+            <option value=10>10</option>
+            <option value=11>11</option>
+            <option value=12>12</option>
+            <option value=13>13</option>
+            <option value=14>14</option>
+            <option value=15>15</option>
+            <option value=16>16</option>
+            <option value=17>17</option>
+            <option value=18>18</option>
+            <option value=19>19</option>
+            <option value=20>20</option>
+            <option value=21>21</option>
+            <option value=22>22</option>
+            <option value=23>23</option>
+            <option value=24>24</option>
+            </select>
+            <select id="fracDia">
+                <option value=.0>0</option>
+                <option value=.125>1/8</option>
+                <option value=.25>1/4</option>
+                <option value=.375>3/8</option>
+                <option value=.5>1/2</option>
+                <option value=.625>5/8</option>
+                <option value=.75>3/4</option>
+                <option value=.875>7/8</option>
+            </select>
+        </p>
+        <button onclick="calcLengthStand(); return false;">Calculate</button>
+      </div>
+      <div id="metricDIV">
+            <p>Diameter (cm):
+            <select id="cmDia">
+                <option value=1>1</option>
+                <option value=2>2</option>
+                <option value=3>3</option>
+                <option value=4>4</option>
+                <option value=5>5</option>
+                <option value=6>6</option>
+                <option value=7>7</option>
+                <option value=8>8</option>
+                <option value=9>9</option>
+                <option value=10>10</option>
+                <option value=11>11</option>
+                <option value=12>12</option>
+                <option value=13>13</option>
+                <option value=14>14</option>
+                <option value=15>15</option>
+                <option value=16>16</option>
+                <option value=17>17</option>
+                <option value=18>18</option>
+                <option value=19>19</option>
+                <option value=20>20</option>
+                <option value=21>21</option>
+                <option value=22>22</option>
+                <option value=23>23</option>
+                <option value=24>24</option>
+                <option value=24>25</option>
+                <option value=24>26</option>
+                <option value=24>27</option>
+                <option value=24>28</option>
+                <option value=24>29</option>
+                <option value=24>30</option>
+                <option value=24>31</option>
+                <option value=24>32</option>
+                <option value=24>33</option>
+                <option value=24>34</option>
+                <option value=24>35</option>
+                <option value=24>36</option>
+                <option value=24>37</option>
+                <option value=24>38</option>
+                <option value=24>39</option>
+                <option value=24>40</option>
+                <option value=24>41</option>
+                <option value=24>42</option>
+                <option value=24>43</option>
+                <option value=24>44</option>
+                <option value=24>45</option>
+                <option value=24>46</option>
+                <option value=24>47</option>
+                <option value=24>48</option>
+                <option value=24>49</option>
+                <option value=24>50</option>
+                <option value=24>51</option>
+                <option value=24>52</option>
+                <option value=24>53</option>
+                <option value=24>54</option>
+                <option value=24>55</option>
+                <option value=24>56</option>
+                <option value=24>57</option>
+                <option value=24>58</option>
+                <option value=24>59</option>
+                <option value=24>60</option>
+            </select>
+            <select id="mmDia">
+                <option value=.0>0</option>
+                <option value=.1>.1</option>
+                <option value=.2>.2</option>
+                <option value=.3>.3</option>
+                <option value=.4>.4</option>
+                <option value=.5>.5</option>
+                <option value=.6>.6</option>
+                <option value=.7>.7</option>
+                <option value=.8>.8</option>
+                <option value=.9>.9</option>
+            </select>
+            </p>
+            <button onclick="calcLengthMet(); return false;">Calculate</button>
+      </div>
+    </form>
+    <section id="tableContainer">
+        <table id="cutList">
+          <thead>
+            <tr>
+              <th>ring diameter</th>
+              <th>segments</th>
+              <th>cut angle</th>
+              <th>stop distance</th>
+            </tr>
+          </thead>
+          <tbody id="cutListRow"></tbody>
+        </table>
+    </section>
+  </main>
+  <div id="hiddenObjects">
+    <button id="deleteRow" onclick="xOutRow(this)">X</button>
+  </div>
+  
+<script>
+        function calcLengthStand() {
+            let ringSegments = document.getElementById("segments").value;
+            let cutAngleDeg = (360 / (2 * ringSegments));
+            let cutAngleRad = ((Math.PI * cutAngleDeg) / 180);
+            let ringDiameterI = document.getElementById("inchesDia").value;
+            let ringDiameterF = document.getElementById("fracDia").value;
+            let ringDiameterStd = ringDiameterI + ringDiameterF;
+            let stopLengthStd = ringDiameterStd * Math.sin(cutAngleRad);
+            let deleteRow = document.getElementById('deleteRow').outerHTML;
+            const table = document.getElementById("cutList");
+            let row = table.insertRow();
+            let cell0 = row.insertCell(0);
+            cell0.innerHTML = ringDiameterStd + "&quot";
+            let cell1 = row.insertCell(1);
+            cell1.innerHTML = ringSegments;
+            let cell2 = row.insertCell(2);
+            cell2.innerHTML = cutAngleDeg.toFixed(3) + "&deg";
+            let cell3 = row.insertCell(3);
+            cell3.innerHTML = stopLengthStd.toFixed(3) + "&quot";
+            let cell4 = row.insertCell(4);
+            cell4.innerHTML = deleteRow;
+        }
+            
+        function calcLengthMet() {
+            let ringSegments = document.getElementById("segments").value;
+            let cutAngleDeg = (360 / (2 * ringSegments));
+            let cutAngleRad = ((Math.PI * cutAngleDeg) / 180);
+            let ringDiameterC = document.getElementById("cmDia").value;
+            let ringDiameterM = document.getElementById("mmDia").value;
+            let ringDiameterMet = ringDiameterC + ringDiameterM;
+            let stopLengthMet = ringDiameterMet * Math.sin(cutAngleRad);
+            const table = document.getElementById("cutList");
+            let row = table.insertRow();
+            let cell0 = row.insertCell(0);
+            cell0.innerHTML = ringDiameterMet + " cm";
+            let cell1 = row.insertCell(1);
+            cell1.innerHTML = ringSegments;
+            let cell2 = row.insertCell(2);
+            cell2.innerHTML = cutAngleDeg.toFixed(3) + "&deg";
+            let cell3 = row.insertCell(3);
+            cell3.innerHTML = stopLengthMet.toFixed(3) + " cm";
+        }
+        
+        var x = document.getElementById("standardDIV");
+        var y = document.getElementById("metricDIV");
+            
+        function hideFields() {
+            x.style.display = "block";
+            y.style.display = "none";
+        }
+            
+        function selectMeasure() {
+            var z = document.getElementById("mySelect").value;
+                if (z === "1") {
+                    x.style.display = "block";
+                    y.style.display = "none";
+                } else {
+                    x.style.display = "none";
+                    y.style.display = "block";
+                }
+        }
+        function xOutRow(t) {
+    var xRow = t.parentNode.parentNode.rowIndex;
+    document.getElementById("cutList").deleteRow(xRow);
+}
+          </script>
+           
+
+    </body>
+    
+</html>
